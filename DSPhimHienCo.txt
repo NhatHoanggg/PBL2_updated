@@ -1,0 +1,7 @@
+mv1|Mobius|104 mins|Hanh dong, khoa hoc vien tuong
+mv2|Moonfall|130 mins|Hanh dong, khoa hoc vien tuong
+mv3|Death on the Nile|127 mins|Than bi, toi pham
+mv4|Turning Red|99 mins|Hoat hinh
+mv5|One Piece Film: Red|115 mins|Hoat hinh, hanh dong
+mv6|Thor: Love and Thunder|137 mins|Hanh dong, sieu nhien
+mv7|Black Adam|125 mins|Hanh dong, sieu nhien
