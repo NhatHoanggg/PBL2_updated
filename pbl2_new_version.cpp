@@ -1,42 +1,51 @@
 #include <iostream>
 #include <fstream>
 #include "KhachHang.h"
-
+#include <iostream>
 using namespace std;
 
 void QLbanve() {
 nhap_lua_chon:
 	system("cls");
 	cout << "\t\t\t 1. Xem danh sach phim hien co " << endl;
-	cout << "\t\t\t 2. Xem lich chieu trong ngay" << endl;
-	cout << "\t\t\t 3. Mua ve " << endl;
+	cout << "\t\t\t 2. Xem lich chieu theo ngay " << endl;
+	cout << "\t\t\t 3. Xem danh sach lich chieu theo phim " << endl;
+	cout << "\t\t\t 4. Mua ve xem phim" << endl;
 	cout << "\t\t\t 0. Thoat " << endl;
 	int selection;
 	cout << "\t\t\t\t -> Nhap lua chon cua ban: ";
 	cin >> selection;
-	if (selection > 3 || selection < 0) {
+	if (selection > 4 || selection < 0) {
 		cout << "\t\t\t Nhap lua chon khong hop le. Vui long nhap lai!"; 
 		system("pause"); 
 		goto nhap_lua_chon;
 	}
 
 	guest g;
+	string date;
 
 	switch (selection) {
 	case 1:
 		g.XemDSPhim();
 		break;
 	case 2:
+		nhap_ngay_mua_ve:
 		system("cls");
-		int date;
-		cout << "\t\t\tNhap ngay ma ban muon mua ve: ";
-		cin >> date;
-
-		// ktra ngay <= today + 7
-
-		g.XemLichChieuTrongNgay(date);
+		cout << "\t\t\tNhap ngay ma ban muon xem lich chieu: ";
+		cin>>date;
+		// ktra ngay <= today + 5
+		if (!g.checkday(date))
+		{
+			cout << "\t\t\tNhap ngay khong hop le. vui long nhap lai" << endl;
+			system("pause");
+			goto nhap_ngay_mua_ve;
+		}
+		g.XemLichChieuTheoNgay(date);
 		break;
 	case 3:
+		g.XemLichChieuTheoPhim();
+		break;
+	case 4:
 		g.banVe();
 		break;
 	}
@@ -47,14 +56,14 @@ nhap_lua_chon:
 void QLrapphim() {
 nhap_lua_chon:
 	system("cls");
-	cout << "\t\t\t 1. Xem danh sach phim hien co " << endl;
-	cout << "\t\t\t 2. Xem lich chieu" << endl;
-	cout << "\t\t\t 3. Them suat chieu" << endl;
-	cout << "\t\t\t 4. Huy suat chieu" << endl;
-	cout << "\t\t\t 5. Them phim" << endl;
-	cout << "\t\t\t 6. Xoa phim" << endl;
-	cout << "\t\t\t 7. Xem danh sach khach hang" << endl;
-	cout << "\t\t\t 8. Xem doanh thu trong ngay hom nay" << endl;
+	cout << "\t\t\t 1. Them suat chieu" << endl;
+	cout << "\t\t\t 2. Huy suat chieu" << endl;
+	cout << "\t\t\t 3. Them phim" << endl;
+	cout << "\t\t\t 4. Xoa phim" << endl;
+	cout << "\t\t\t 5. Xem danh sach khach hang" << endl;
+	cout << "\t\t\t 6. Xem doanh thu " << endl;
+	cout << "\t\t\t 7. Thong ke phim an khach" << endl;
+	cout << "\t\t\t 8. Thong ke khung gio an khach" << endl;
 	cout << "\t\t\t 0. Thoat " << endl;
 	int selection;
 	cout << "\t\t\t\t -> Nhap lua chon cua ban: ";
@@ -84,7 +93,7 @@ nhap_lua_chon:
 }
 
 void thoatCT() {
-	cout << "thoat" << endl;
+	cout << "\t\t\t\tNHAN PHIM BAT KI DE KET THUC CHUONG TRINH! " << endl;
 }
 
 void title() {

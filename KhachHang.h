@@ -18,9 +18,11 @@ public:
 	void get_Name();
 	void get_PhoneNum();
 	void get_date();
+	bool checkday(string date);
 	void banVe();
 	void XemDSPhim();
-	void XemLichChieuTrongNgay(int date);
+	void XemLichChieuTheoNgay(string date);
+	void XemLichChieuTheoPhim();
 	void update();
 };
 
