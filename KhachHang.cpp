@@ -303,10 +303,6 @@ void guest::banVe() {
 	//get_Num();
 	get_date();
 
-	//cout << Name << endl;
-	//cout << phoneNum << endl;
-	//cout << Num << endl;
-	//cout << _date << endl;
 	system("cls");
 	XemLichChieuTheoNgay(_date);
 	string maPhim, suat;
@@ -497,8 +493,6 @@ show:
 	cout << setw(7) << "Ngay " << setw(2) << day << " / " << month << " / " << year << setw(3) << "|" << endl;
 	cout << "\t\t\t+------------------------------------------------+" << endl;
 
-	// luu thong tin khach hang vao file ; 
-	//fstream f;
 	f.open("DSKhachHang.txt",ios :: app);
 	// ten|sdt|ngayxem|maphim|sove|vitri...|Thanh tien
 	f << _date <<"|" << Name << "|" << phoneNum << "|" << maPhim << "|" << Num << "|";
@@ -530,13 +524,5 @@ show:
 	}
 	g.close();
 	
-}
-
-
-void guest::update() {
-	fstream f;
-	f.open("DSKhachHang.txt", ios::app); // ghi tiep vao file 
-	system("pause");
-	f.close();
 }
 

@@ -23,7 +23,6 @@ public:
 	void XemDSPhim();
 	void XemLichChieuTheoNgay(string date);
 	void XemLichChieuTheoPhim();
-	void update();
 };
 
 #endif // !KHACHHANG_H

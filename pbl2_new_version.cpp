@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "KhachHang.h"
+#include "QuanLy.h"
 #include <iostream>
 using namespace std;
 
@@ -56,14 +57,14 @@ nhap_lua_chon:
 void QLrapphim() {
 nhap_lua_chon:
 	system("cls");
+	quanly q;
+	q.getdata();
 	cout << "\t\t\t 1. Them suat chieu" << endl;
 	cout << "\t\t\t 2. Huy suat chieu" << endl;
 	cout << "\t\t\t 3. Them phim" << endl;
 	cout << "\t\t\t 4. Xoa phim" << endl;
 	cout << "\t\t\t 5. Xem danh sach khach hang" << endl;
 	cout << "\t\t\t 6. Xem doanh thu " << endl;
-	cout << "\t\t\t 7. Thong ke phim an khach" << endl;
-	cout << "\t\t\t 8. Thong ke khung gio an khach" << endl;
 	cout << "\t\t\t 0. Thoat " << endl;
 	int selection;
 	cout << "\t\t\t\t -> Nhap lua chon cua ban: ";
@@ -74,27 +75,31 @@ nhap_lua_chon:
 	}
 	switch (selection) {
 	case 1:
+		q.ThemSuat(q);
 		break;
 	case 2:
+		q.HuySuat(q);
 		break;
 	case 3:
+		q.ThemPhim(q);
 		break;
 	case 4:
+		q.HuySuat(q);
 		break;
 	case 5:
+		q.XemDsKhachHang(q);
 		break;
 	case 6:
-		break;
-	case 7:
-		break;
-	case 8:
+		q.XemDoanhThu(q);
 		break;
 	}
 }
 
+
 void thoatCT() {
 	cout << "\t\t\t\tNHAN PHIM BAT KI DE KET THUC CHUONG TRINH! " << endl;
 }
+
 
 void title() {
 	fstream f;
