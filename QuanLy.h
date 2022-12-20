@@ -23,6 +23,10 @@ public:
 	void HuyPhim(const quanly&);
 	void XemDsKhachHang(const quanly&);
 	void XemDoanhThu(const quanly&);
+	void XemDoanhThuTrongNgay(const quanly&);
+	void XemDoanhThuTrongThang(const quanly&);
+	void XemDoanhThuTrongQuy(const quanly&);
+	void XemDoanhThuTrongNam(const quanly&);
 	string& operator[](int i) const;
 };
 

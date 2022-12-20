@@ -90,7 +90,7 @@ void LinkedList::printList() const
 
 void LinkedList::printListFile(string filename) const
 {
-    fstream g;
+    ofstream g;
     g.open(filename);
     if (this->head != NULL)
     {

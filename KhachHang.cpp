@@ -52,7 +52,13 @@ nhap_sdt:
 		cout << "\t\t\tNhap so dien thoai khong hop le. vui long nhap lai! " << endl;
 		goto nhap_sdt;
 	}
-		
+
+	for (int i = 1; i < phoneNum.length(); i++) {
+		if (int(phoneNum[i]) < 48 || int(phoneNum[i]) > 57) {
+			cout << "\t\t\tNhap so dien thoai khong hop le. vui long nhap lai! " << endl;
+			goto nhap_sdt;
+		}
+	}
 }
 
 
@@ -99,6 +105,7 @@ bool guest::checkday(string date) {
 		return true;
 	}
 	return false;
+
 }
 
 
@@ -431,7 +438,8 @@ nhap_so_ve:
 	vector <string> pos;
 show:
 	system("cls");
-	cout << "\t\t\t\t RAP SO " << s2 << " / SUAT CHIEU : " << s1 <<  endl << endl;
+	cout << "\t\t\t\t PHIM:"  << findName(maPhim) << endl;
+	cout << "\t\t\t\t\tRAP SO " << s2 << " / SUAT CHIEU : " << s1 <<  endl << endl;
 	cout << "\t\t\t" << setw(5) <<" ";
 	for (int i = 0; i < 10; i++)
 		//cout << setw(5) << char(65+i);
@@ -485,7 +493,7 @@ show:
 	cout << "\t\t\t|" << setw(3) << " " << "Danh Sach Vi Tri Da Chon: " << setw(20) << "|" << endl;
 
 	for (int i = 0; i < Num; i++) {
-		cout << "\t\t\t|\t\t" << " - Vi tri thu " << i + 1 << ": " << setw(10) << pos[i] << setw(7) << "|" << endl;
+		cout << "\t\t\t|\t\t" << " - Vi tri thu " << setw(3) << i + 1 << ": " << setw(8) << pos[i] << setw(7) << "|" << endl;
 	}
 
 	cout << "\t\t\t|\t" << "- THANH TIEN : " << setw(12) << Num * 50000 << "VND" << setw(12) << "|" << endl;
@@ -495,15 +503,17 @@ show:
 
 	f.open("DSKhachHang.txt",ios :: app);
 	// ten|sdt|ngayxem|maphim|sove|vitri...|Thanh tien
-	f << _date <<"|" << Name << "|" << phoneNum << "|" << maPhim << "|" << Num << "|";
-	for (int i = 0; i < Num; i++)
-		f << pos[i] << "|";
+	f << today + "|" + to_string(hour) + ":" + to_string(mins) + "|" + _date <<"|" << Name << "|" << phoneNum << "|" << findName(maPhim) << "|" << Num << "|";
+	for (int i = 0; i < Num - 1; i++)
+		f << pos[i] << ",";
+	f << pos[Num - 1] << "|";
 	f << Num * 50000  << endl;
 	f.close();
 	//cap nhat du lieu rap chieu 
 	//ngay - ma - gio - vitri 
+	//today << "|  TIME: " << hour << ":" << mins
 	string info;
-	info = _date + "|" + maPhim + "|" + suat + "|";
+	info =  _date + "|" + maPhim + "|" + suat + "|";
 	vector <string> list;
 	string tmp;
 	f.open("rap" + s2 + ".txt");
@@ -526,3 +536,20 @@ show:
 	
 }
 
+bool timkiemKH(string hoten, string sdt, string &info) {
+	fstream f;
+	string st;
+	f.open("DSKhachHang.txt");
+	while (!f.eof()) {
+		getline(f, st);
+		info = st;
+		if (!f.eof() && st.find(hoten) < st.length() && st.find(sdt) < st.length())
+			return true;
+	}
+	return false;
+	f.close();
+}
+
+void guest::suaVe() {
+
+}

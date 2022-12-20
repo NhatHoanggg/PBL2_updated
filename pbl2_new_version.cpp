@@ -8,15 +8,17 @@ using namespace std;
 void QLbanve() {
 nhap_lua_chon:
 	system("cls");
+	cout << "\t\t\t\t\tBAN VE" << endl << endl;
 	cout << "\t\t\t 1. Xem danh sach phim hien co " << endl;
 	cout << "\t\t\t 2. Xem lich chieu theo ngay " << endl;
 	cout << "\t\t\t 3. Xem danh sach lich chieu theo phim " << endl;
 	cout << "\t\t\t 4. Mua ve xem phim" << endl;
+	cout << "\t\t\t 5. Sua ve xem phim" << endl;
 	cout << "\t\t\t 0. Thoat " << endl;
 	int selection;
 	cout << "\t\t\t\t -> Nhap lua chon cua ban: ";
 	cin >> selection;
-	if (selection > 4 || selection < 0) {
+	if (selection > 5 || selection < 0) {
 		cout << "\t\t\t Nhap lua chon khong hop le. Vui long nhap lai!"; 
 		system("pause"); 
 		goto nhap_lua_chon;
@@ -32,8 +34,9 @@ nhap_lua_chon:
 	case 2:
 		nhap_ngay_mua_ve:
 		system("cls");
+		cout << "\t\t\t\tXEM LICH CHIEU THEO NGAY: " << endl << endl;
 		cout << "\t\t\tNhap ngay ma ban muon xem lich chieu: ";
-		cin>>date;
+		cin >> date;
 		// ktra ngay <= today + 5
 		if (!g.checkday(date))
 		{
@@ -49,6 +52,9 @@ nhap_lua_chon:
 	case 4:
 		g.banVe();
 		break;
+	case 5:
+		g.suaVe();
+		break;
 	}
 
 }
@@ -59,17 +65,15 @@ nhap_lua_chon:
 	system("cls");
 	quanly q;
 	q.getdata();
+	cout << "\t\t\t\t QUAN LY" << endl << endl;
 	cout << "\t\t\t 1. Them suat chieu" << endl;
 	cout << "\t\t\t 2. Huy suat chieu" << endl;
-	cout << "\t\t\t 3. Them phim" << endl;
-	cout << "\t\t\t 4. Xoa phim" << endl;
-	cout << "\t\t\t 5. Xem danh sach khach hang" << endl;
-	cout << "\t\t\t 6. Xem doanh thu " << endl;
+	cout << "\t\t\t 3. Xem doanh thu " << endl;
 	cout << "\t\t\t 0. Thoat " << endl;
 	int selection;
 	cout << "\t\t\t\t -> Nhap lua chon cua ban: ";
 	cin >> selection;
-	if (selection > 8 || selection < 0) {
+	if (selection > 3 || selection < 0) {
 		cout << "\t\t\t Lua chon khong hop le. Vui long nhap lai! ";
 		goto nhap_lua_chon;
 	}
@@ -81,15 +85,6 @@ nhap_lua_chon:
 		q.HuySuat(q);
 		break;
 	case 3:
-		q.ThemPhim(q);
-		break;
-	case 4:
-		q.HuySuat(q);
-		break;
-	case 5:
-		q.XemDsKhachHang(q);
-		break;
-	case 6:
 		q.XemDoanhThu(q);
 		break;
 	}
@@ -97,7 +92,7 @@ nhap_lua_chon:
 
 
 void thoatCT() {
-	cout << "\t\t\t\tNHAN PHIM BAT KI DE KET THUC CHUONG TRINH! " << endl;
+	cout << "\t\t\t\tNHAN PHIM BAT KI DE KET THUC CHUONG TRINH! " << endl << endl;
 }
 
 
