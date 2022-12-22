@@ -17,8 +17,6 @@ public:
 	void getdata();
 	void show(const quanly&);
 	bool checkday(string);
-	void ThemSuat(const quanly&);
-	void HuySuat(const quanly&);
 	void ThemPhim(const quanly&);
 	void HuyPhim(const quanly&);
 	void XemDsKhachHang(const quanly&);

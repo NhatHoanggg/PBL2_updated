@@ -13,7 +13,7 @@ nhap_lua_chon:
 	cout << "\t\t\t 2. Xem lich chieu theo ngay " << endl;
 	cout << "\t\t\t 3. Xem danh sach lich chieu theo phim " << endl;
 	cout << "\t\t\t 4. Mua ve xem phim" << endl;
-	cout << "\t\t\t 5. Sua ve xem phim" << endl;
+	//cout << "\t\t\t 5. Sua ve xem phim" << endl;
 	cout << "\t\t\t 0. Thoat " << endl;
 	int selection;
 	cout << "\t\t\t\t -> Nhap lua chon cua ban: ";
@@ -66,8 +66,8 @@ nhap_lua_chon:
 	quanly q;
 	q.getdata();
 	cout << "\t\t\t\t QUAN LY" << endl << endl;
-	cout << "\t\t\t 1. Them suat chieu" << endl;
-	cout << "\t\t\t 2. Huy suat chieu" << endl;
+	cout << "\t\t\t 1. Them phim" << endl;
+	cout << "\t\t\t 2. Huy phim" << endl;
 	cout << "\t\t\t 3. Xem doanh thu " << endl;
 	cout << "\t\t\t 0. Thoat " << endl;
 	int selection;
@@ -79,10 +79,10 @@ nhap_lua_chon:
 	}
 	switch (selection) {
 	case 1:
-		q.ThemSuat(q);
+		q.ThemPhim(q);
 		break;
 	case 2:
-		q.HuySuat(q);
+		q.HuyPhim(q);
 		break;
 	case 3:
 		q.XemDoanhThu(q);

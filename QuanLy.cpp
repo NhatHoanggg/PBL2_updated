@@ -20,17 +20,14 @@ quanly::~quanly() {
 void quanly::getdata() {
 	fstream f;
 	string tmp;
-	for (int i = 1; i <= 4; i++) {
-		f.open("rap" + to_string(i) + ".txt");
-		while (!f.eof()) {
-			getline(f, tmp);
-			if (!f.eof()) {
-				this->InsertNodeAfter(tmp);
-			}
-
-		}
-		f.close();
+	f.open("DSPhimHienCo.txt");
+	while (!f.eof())
+	{
+		getline(f, tmp);
+		if (!f.eof())
+			this->InsertNodeAfter(tmp);
 	}
+	f.close();
 }
 
 string& quanly::operator[](int i) const
@@ -39,18 +36,13 @@ string& quanly::operator[](int i) const
 }
 
 void quanly::show(const quanly& q) {
-	//this->printList();
-	//cout << this->sizeofList();
-	for (int i = 1; i < this->sizeofList() + 1; i++) {
-		//cout << this->findNode(i+1) << endl;
-		q[i] = to_string(i);
-		cout << q[i] << endl;
-	}
+
+	
 }
 bool quanly::checkday(string date) {
 	time_t theTime = time(NULL);
 	struct tm* aTime = localtime(&theTime);
-	//cout << date << " ";
+	
 	int day = aTime->tm_mday;
 	int month = aTime->tm_mon + 1; // Month is 0 – 11, add 1 to get a jan-dec 1-12 concept
 	int year = aTime->tm_year + 1900; // Year is # years since 1900
@@ -81,75 +73,68 @@ bool quanly::checkday(string date) {
 	return false;
 }
 
-void quanly::ThemSuat(const quanly& q) {
-	cin.ignore();
-nhap_ngay:
-	system("cls");
-	cout << "\t\t\t\tTHEM SUAT CHIEU: " << endl;
-	cout << "\t\t\tNhap ngay ban muon them suat chieu: ";
-	string ngay, suat, phim, tmp;
-
-	getline(cin, ngay);
-
-	if (!checkday(ngay)) {
-		cout << "\t\t\tNgay nhap khong hop le. Vui long nhap lai." << endl;
-		goto nhap_ngay;
-	}
-
-	cout << "\t\t\tNhap suat chieu: ";
-	getline(cin, suat);
-
-	cout << "\t\t\tNhap ma phim: ";
-	getline(cin, phim);
-	string end = "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
-	tmp = ngay + "|" + phim + "|" + suat + "|" + end;
-
-	if (findData(tmp)) {
-		cout << "Suat da ton tai . Vui long nhap lai." << endl;
-		system("pause");
-		goto nhap_ngay;
-	}
-	InsertNode(tmp);
-}
-
-void quanly::HuySuat(const quanly& q) {
-	cin.ignore();
-nhap_ngay:
-	system("cls");
-	cout << "\t\t\t\tHUY SUAT CHIEU: " << endl;
-	cout << "\t\t\tNhap ngay ban muon them suat chieu: ";
-	string ngay, suat, phim, tmp;
-
-	getline(cin, ngay);
-
-	if (!checkday(ngay)) {
-		cout << "\t\t\tNgay nhap khong hop le. Vui long nhap lai." << endl;
-		goto nhap_ngay;
-	}
-
-	cout << "\t\t\tNhap suat chieu: ";
-	getline(cin, suat);
-
-	cout << "\t\t\tNhap ma phim: ";
-	getline(cin, phim);
-	string end = "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
-	tmp = ngay + "|" + phim + "|" + suat + "|" + end;
-
-	if (!findData(tmp)) {
-		cout << "Suat chieu khong ton tai . Vui long nhap lai." << endl;
-		system("pause");
-		goto nhap_ngay;
-	}
-	DeleteNode(tmp);
-}
-
 void quanly::ThemPhim(const quanly& q) {
+	cin.ignore();
 
+	system("cls");
+	cout << "\t\t\t\tTHEM PHIM: " << endl;
+	string ma, ten, tgian, theloai;
+	
+	cout << "\t\t\tNhap phim ban muon them: ";
+	getline(cin, ten);
+
+	do {
+		cout << "\t\t\tNhap ma phim: ";
+		getline(cin, ma);
+		if (findData(ma))
+			cout << "\t\t\tMa phim da ton tai" << endl;
+	}
+	while (findData(ma));
+	cout << "\t\t\tNhap thoi luong: "; 
+	getline(cin, tgian);
+	cout << "\t\t\tNhap the loai: ";
+	getline(cin, theloai);
+	string tmp;
+	tmp = ma + "|" + ten + "|" + tgian + "|" + theloai;
+	InsertNodeAfter(tmp);
+	fstream f;
+	f.open("DSPhimHienCo.txt", ios::app);
+	f << tmp << endl;
+	f.close();
+	
 }
 
 void quanly::HuyPhim(const quanly& q) {
+	cin.ignore();
+	system("cls");
+	cout << "\t\t\t\tHUY PHIM: " << endl;
 
+	string ma;
+	do {
+
+		cout << "\t\t\tNhap ma phim muon huy: ";
+		
+		getline(cin, ma);
+		if (!findData(ma)) {
+			cout << "\t\t\tMa phim khong ton tai" << endl;
+		}
+
+	} while (!findData(ma));
+
+	DeleteNode(ma);
+
+	ofstream f;
+	f.open("DSPhimHienCo.txt");
+	f.close();
+
+	fstream g;
+	g.open("DSPhimHienCo.txt");
+	for (int i = 1; i <= sizeofList(); i++) {
+		g << q[i] << endl;
+	}
+	g.close();
 }
+
 
 void quanly::XemDsKhachHang(const quanly& q) {
 
@@ -207,7 +192,6 @@ void quanly::XemDoanhThuTrongNgay(const quanly&) {
 	f.open("DSKhachHang.txt");
 	while (!f.eof()) {
 		getline(f, s);
-		s.erase(0, s.find("|") + 1);
 		if (!f.eof() && s.find(st) < s.length()) {
 			s1 = s.substr(s.find_last_of("|") + 1, s.length());
 			value = atoi(s1.c_str());
@@ -237,7 +221,6 @@ void quanly::XemDoanhThuTrongThang(const quanly&) {
 	f.open("DSKhachHang.txt");
 	while (!f.eof()) {
 		getline(f, s);
-		s.erase(0, s.find("|") + 1);
 		if (!f.eof() && s.find(st) < s.length()) {
 			s1 = s.substr(s.find_last_of("|") + 1, s.length());
 			value = atoi(s1.c_str());
@@ -270,8 +253,7 @@ void quanly::XemDoanhThuTrongQuy(const quanly&) {
 	while (!f.eof()) {
 		getline(f, s);
 		if (!f.eof()) {
-			s.erase(0, s.find("|") + 1);
-			s.erase(0, s.find("|") + 1);
+			
 			s1 = s.substr(0, s.find("|"));
 			s1.erase(0, s1.find("/") + 1);
 			s1.erase(s1.find("/"), s1.length());
@@ -314,8 +296,6 @@ void quanly::XemDoanhThuTrongNam(const quanly&) {
 	f.open("DSKhachHang.txt");
 	while (!f.eof()) {
 		getline(f, s);
-		s.erase(0, s.find("|") + 1);
-		s.erase(0, s.find("|") + 1);
 		if (!f.eof() && s.find(st) < s.length()) {
 			s1 = s.substr(s.find_last_of("|") + 1, s.length());
 			value = atoi(s1.c_str());

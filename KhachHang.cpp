@@ -503,7 +503,8 @@ show:
 
 	f.open("DSKhachHang.txt",ios :: app);
 	// ten|sdt|ngayxem|maphim|sove|vitri...|Thanh tien
-	f << today + "|" + to_string(hour) + ":" + to_string(mins) + "|" + _date <<"|" << Name << "|" << phoneNum << "|" << findName(maPhim) << "|" << Num << "|";
+	//f << today + "|" + to_string(hour) + ":" + to_string(mins) + "|" + _date <<"|" << Name << "|" << phoneNum << "|" << findName(maPhim) << "|" << Num << "|";
+	f << _date <<"|" << Name << "|" << phoneNum << "|" << findName(maPhim) << "|" << Num << "|";
 	for (int i = 0; i < Num - 1; i++)
 		f << pos[i] << ",";
 	f << pos[Num - 1] << "|";
