@@ -70,6 +70,9 @@ bool quanly::checkday(string date) {
 	if (_day <= day + 5 - dayofmonths[month - 1] && _month == month + 1) {
 		return true;
 	}
+	if (day + 5 > 31 && month == 12 && _month == 1 && _day <= day + 5 - 31 && year == _year - 1) {
+		return true;
+	}
 	return false;
 }
 
@@ -136,9 +139,6 @@ void quanly::HuyPhim(const quanly& q) {
 }
 
 
-void quanly::XemDsKhachHang(const quanly& q) {
-
-}
 
 void quanly::XemDoanhThu(const quanly& q) {
 nhap:

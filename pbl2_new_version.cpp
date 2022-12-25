@@ -2,7 +2,6 @@
 #include <fstream>
 #include "KhachHang.h"
 #include "QuanLy.h"
-#include <iostream>
 using namespace std;
 
 void QLbanve() {
@@ -13,12 +12,11 @@ nhap_lua_chon:
 	cout << "\t\t\t 2. Xem lich chieu theo ngay " << endl;
 	cout << "\t\t\t 3. Xem danh sach lich chieu theo phim " << endl;
 	cout << "\t\t\t 4. Mua ve xem phim" << endl;
-	//cout << "\t\t\t 5. Sua ve xem phim" << endl;
 	cout << "\t\t\t 0. Thoat " << endl;
 	int selection;
 	cout << "\t\t\t\t -> Nhap lua chon cua ban: ";
 	cin >> selection;
-	if (selection > 5 || selection < 0) {
+	if (selection > 4 || selection < 0) {
 		cout << "\t\t\t Nhap lua chon khong hop le. Vui long nhap lai!"; 
 		system("pause"); 
 		goto nhap_lua_chon;
@@ -35,7 +33,7 @@ nhap_lua_chon:
 		nhap_ngay_mua_ve:
 		system("cls");
 		cout << "\t\t\t\tXEM LICH CHIEU THEO NGAY: " << endl << endl;
-		cout << "\t\t\tNhap ngay ma ban muon xem lich chieu: ";
+		cout << "\t\t\tNhap ngay ma ban muon xem lich chieu (ngay/thang/nam): ";
 		cin >> date;
 		// ktra ngay <= today + 5
 		if (!g.checkday(date))
@@ -51,9 +49,6 @@ nhap_lua_chon:
 		break;
 	case 4:
 		g.banVe();
-		break;
-	case 5:
-		g.suaVe();
 		break;
 	}
 
@@ -111,15 +106,16 @@ int main() {
 	while (1) {
 	nhap_lua_chon:
 		system("cls");
-		int selection ;
-		//title();
+		int selection;
+		title();
 		cout << "\t\t\t NHAP LUA CHON CUA BAN: " << endl;
 		cout << "\t\t\t 1.  QUAN LY BAN VE" << endl;
 		cout << "\t\t\t 2.  QUAN LY RAP PHIM" << endl;
+		cout << "\t\t\t 0.  THOAT" << endl;
 		cout << "\t\t\t\t --> Nhap lua chon : ";
 		cin >> selection;
 
-		if (selection > 2 || selection < 1) {
+		if (selection > 2 || selection < 0) {
 			cout << "\t\t\t Nhap khong hop le. Vui long nhap lai ! "; 
 			system("pause");
 			goto nhap_lua_chon;

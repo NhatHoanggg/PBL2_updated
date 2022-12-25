@@ -20,7 +20,6 @@ public:
 	void get_date();
 	bool checkday(string date);
 	void banVe();
-	void suaVe();
 	void XemDSPhim();
 	void XemLichChieuTheoNgay(string date);
 	void XemLichChieuTheoPhim();

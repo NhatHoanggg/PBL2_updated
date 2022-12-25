@@ -76,11 +76,11 @@ void guest::get_Num() {
 bool guest::checkday(string date) {
 	time_t theTime = time(NULL);
 	struct tm* aTime = localtime(&theTime);
-	//cout << date << " ";
+	//ngay gio hien tai;
 	int day = aTime->tm_mday;
 	int month = aTime->tm_mon + 1; // Month is 0 – 11, add 1 to get a jan-dec 1-12 concept
 	int year = aTime->tm_year + 1900; // Year is # years since 1900
-
+	//
 	string s, st;
 	int _day, _month, _year;
 	st = date.substr(0, date.find("/"));
@@ -102,6 +102,10 @@ bool guest::checkday(string date) {
 	}
 
 	if (_day <= day + 5 - dayofmonths[month - 1] && _month == month + 1) {
+		return true;
+	}
+
+	if (day + 5 > 31 && month == 12 && _month == 1 && _day <= day + 5 - 31 && year == _year - 1) {
 		return true;
 	}
 	return false;
@@ -200,7 +204,7 @@ void guest::XemLichChieuTheoNgay(string date) {
 			getline(f, s);
 
 			str = s.substr(0, s.find("|"));    
-			daycheck = atoi((str.c_str()));
+			//daycheck = atoi((str.c_str()));
 
 			if (!f.eof() && str == date) {
 				string s1, s2;
@@ -305,16 +309,15 @@ void guest::XemLichChieuTheoPhim() {
 void guest::banVe() {
 	system("cls");
 	cout << "\t\t\t NHAP THONG TIN KHACH HANG : " << endl << endl;
-	get_Name();
-	get_PhoneNum();
-	//get_Num();
-	get_date();
+	get_Name();// nhap ten
+	get_PhoneNum(); // sdt
+	get_date(); // ngay mua ve
 
 	system("cls");
 	XemLichChieuTheoNgay(_date);
 	string maPhim, suat;
 	cout << "\t\t\tNhap ma phim ban muon xem: ";
-nhap_phim:
+    nhap_phim:
 	getline(cin, maPhim);
 	if (findName(maPhim) == "NOT EXIST!") {
 		cout << "\t\t\tMa phim khong hop le hoac khong ton tai. Vui long nhap lai! " << endl;
@@ -549,8 +552,4 @@ bool timkiemKH(string hoten, string sdt, string &info) {
 	}
 	return false;
 	f.close();
-}
-
-void guest::suaVe() {
-
 }
